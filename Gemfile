@@ -54,6 +54,15 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+  gem "faker", "~> 3.5"
+  gem "rspec-rails", "~> 8.0"
+  gem "factory_bot_rails", "~> 6.5"
+  gem "shoulda", "~> 4.0"
+  gem "rubycritic", "~> 4.11"
+  gem "simplecov", "~> 0.22.0"
+  gem "database_cleaner", "~> 2.1"
+  gem "dotenv-rails", "~> 3.1"
+  gem "capybara-email", "~> 3.0"
 end
 
 group :development do
@@ -66,3 +75,6 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+
+
