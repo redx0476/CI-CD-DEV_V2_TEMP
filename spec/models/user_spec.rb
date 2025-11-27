@@ -502,8 +502,8 @@ RSpec.describe User, type: :model do
 
   describe '#reactivate' do
     let(:user) do
-      create(:user, 
-        status: :deleted, 
+      create(:user,
+        status: :deleted,
         deleted_at: 1.day.ago,
         banned_at: 2.days.ago,
         suspended_at: 3.days.ago
@@ -577,7 +577,7 @@ RSpec.describe User, type: :model do
     it 'allows ban -> reactivate workflow' do
       user.ban_user
       expect(user.currently_banned?).to be true
-      
+
       user.reactivate
       expect(user.currently_active?).to be true
       expect(user.banned_at).to be_nil
@@ -586,7 +586,7 @@ RSpec.describe User, type: :model do
     it 'allows suspend -> reactivate workflow' do
       user.suspend_user
       expect(user.currently_suspended?).to be true
-      
+
       user.reactivate
       expect(user.currently_active?).to be true
       expect(user.suspended_at).to be_nil
@@ -595,7 +595,7 @@ RSpec.describe User, type: :model do
     it 'allows soft_delete -> reactivate workflow' do
       user.soft_delete
       expect(user.currently_deleted?).to be true
-      
+
       user.reactivate
       expect(user.currently_active?).to be true
       expect(user.deleted_at).to be_nil
@@ -604,13 +604,13 @@ RSpec.describe User, type: :model do
     it 'allows multiple status changes' do
       user.suspend_user
       expect(user.currently_suspended?).to be true
-      
+
       user.ban_user
       expect(user.currently_banned?).to be true
-      
+
       user.soft_delete
       expect(user.currently_deleted?).to be true
-      
+
       user.reactivate
       expect(user.currently_active?).to be true
       expect(user.deleted_at).to be_nil

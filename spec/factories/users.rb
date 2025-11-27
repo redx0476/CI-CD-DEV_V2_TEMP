@@ -12,17 +12,17 @@ FactoryBot.define do
       currently_active { false }
       status { :inactive }
     end
-    
+
     trait :banned do
       currently_active { false }
       status { :banned }
     end
-    
+
     trait :deleted do
       currently_active { false }
       status { :deleted }
     end
-    
+
     trait :suspended do
       currently_active { false }
       status { :suspended }
