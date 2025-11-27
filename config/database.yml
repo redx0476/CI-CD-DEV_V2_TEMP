@@ -18,11 +18,26 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   max_connections: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-
-
+  username: <%= ENV["DATABASE_USERNAME"] || "postgres" %>
+  password: <%= ENV["DATABASE_PASSWORD"] || "YS@123456" %>
+  host: <%= ENV["DATABASE_HOST"] || "localhost" %>
+  port: <%= ENV["DATABASE_PORT"] || 5432 %>
 development:
-  <<: *default
-  database: ci_cd_dev_v2_temp_development
+  primary: &primary_development
+    <<: *default
+    database: ci_cd_dev_v2_temp_development
+  cache:
+    <<: *primary_development
+    database: ci_cd_dev_v2_temp_development_cache
+    migrations_paths: db/cache_migrate
+  queue:
+    <<: *primary_development
+    database: ci_cd_dev_v2_temp_development_queue
+    migrations_paths: db/queue_migrate
+  cable:
+    <<: *primary_development
+    database: ci_cd_dev_v2_temp_development_cable
+    migrations_paths: db/cable_migrate
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
@@ -55,9 +70,21 @@ development:
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  <<: *default
-  database: ci_cd_dev_v2_temp_test
-
+  primary: &primary_test
+    <<: *default
+    database: ci_cd_dev_v2_temp_test
+  cache:
+    <<: *primary_test
+    database: ci_cd_dev_v2_temp_test_cache
+    migrations_paths: db/cache_migrate
+  queue:
+    <<: *primary_test
+    database: ci_cd_dev_v2_temp_test_queue
+    migrations_paths: db/queue_migrate
+  cable:
+    <<: *primary_test
+    database: ci_cd_dev_v2_temp_test_cable
+    migrations_paths: db/cable_migrate
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
 # ever seen by anyone, they now have access to your database.
