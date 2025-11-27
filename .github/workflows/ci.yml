@@ -107,7 +107,7 @@ jobs:
           # REDIS_URL: redis://localhost:6379/0
         run: |
           bin/rails db:test:prepare
-          bundle exec rspec --exclude-pattern "spec/system/**/*_spec.rb"
+          bundle exec rspec
 
   system-test:
     runs-on: ubuntu-latest
@@ -140,7 +140,7 @@ jobs:
         with:
           bundler-cache: true
 
-      - name: Run System Tests
+      - name: Run System tests
         env:
           RAILS_ENV: test
           DATABASE_USERNAME: postgres
@@ -151,7 +151,7 @@ jobs:
           # REDIS_URL: redis://localhost:6379/0
         run: |
           bin/rails db:test:prepare
-          bundle exec rspec spec/system/
+          bundle exec rspec
 
       - name: Keep screenshots from failed system tests
         uses: actions/upload-artifact@v5
