@@ -38,6 +38,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[8.1]
       t.string :provider
       t.boolean :currently_active, default: false
       t.integer :status, default: 0
+      t.datetime :deleted_at
+      t.datetime :banned_at
+      t.datetime :suspended_at
 
       t.datetime :last_seen_at
 

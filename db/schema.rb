@@ -16,6 +16,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_27_075130) do
   enable_extension "pgcrypto"
 
   create_table "users", force: :cascade do |t|
+    t.datetime "banned_at"
     t.datetime "confirmation_sent_at"
     t.string "confirmation_token"
     t.datetime "confirmed_at"
@@ -23,6 +24,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_27_075130) do
     t.datetime "current_sign_in_at"
     t.string "current_sign_in_ip"
     t.boolean "currently_active", default: false
+    t.datetime "deleted_at"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.integer "failed_attempts", default: 0, null: false
@@ -37,6 +39,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_27_075130) do
     t.integer "sign_in_count", default: 0, null: false
     t.integer "status", default: 0
     t.string "stripe_customer_id"
+    t.datetime "suspended_at"
     t.string "uid"
     t.string "unconfirmed_email"
     t.string "unlock_token"
