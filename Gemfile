@@ -61,7 +61,7 @@ group :development, :test do
   gem "rubycritic", "~> 4.11"
   gem "simplecov", "~> 0.22.0"
   gem "database_cleaner", "~> 2.1"
-  gem "dotenv-rails", "~> 3.1"
+  gem "dotenv-rails", "~> 3.2"
   gem "capybara-email", "~> 3.0"
 end
 
